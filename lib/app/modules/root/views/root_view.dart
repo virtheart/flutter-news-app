@@ -13,10 +13,10 @@ class RootView extends GetView<RootController> {
         title: const Text('RootView'),
         centerTitle: true,
       ),
-      body: const Center(
+      body: Center(
         child: Text(
-          'RootView is working',
-          style: TextStyle(fontSize: 20),
+          'RootView is working${controller.count}',
+          style: const TextStyle(fontSize: 20),
         ),
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:news/services/DioService.dart';
 import 'package:news/services/HiveStorageService.dart';
 
 import 'app/routes/app_pages.dart';
@@ -17,6 +18,11 @@ void main() async {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.light,
   ));
+
+  // 初始化Dio
+  await DioService.instance.init(
+    baseUrl: 'https://sys.virtheart.com/api', // 请替换为实际的API基础URL
+  );
 
   runApp(const MyApp());
 }

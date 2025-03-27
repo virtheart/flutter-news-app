@@ -1,9 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:news/app/data/api/auth_api.dart';
+import 'package:news/app/data/models/auth.dart';
+import 'package:news/app/routes/app_pages.dart';
+import 'package:news/services/HiveStorageService.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  final obscureText = true.obs;
+  final FocusNode usernameFocusNode = FocusNode();
+  final FocusNode passwordFocusNode = FocusNode();
+  final TextEditingController usernameController = TextEditingController(text: "xiaoke");
+  final TextEditingController passwordController = TextEditingController(text: "123456");
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,8 +25,25 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {
+    usernameFocusNode.dispose();
+    passwordFocusNode.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void login() {
+    final storage = HiveStorageService();
+    final token = storage.read('token');
+    AuthApi.login(username: usernameController.text, password: passwordController.text).then((value) {
+      final authData = AuthModel.fromJson(value.data);
+      storage.save("accessToken", authData.accessToken);
+      storage.save("refreshToken", authData.refreshToken);
+      storage.save("authData", authData);
+      storage.save("isSplash", true);
+      // 进入主界面
+      Get.offAllNamed(Routes.ROOT);
+    });
+  }
+
 }
