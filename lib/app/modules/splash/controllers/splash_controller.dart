@@ -34,8 +34,6 @@ class SplashController extends GetxController {
     super.onClose();
   }
 
-
-
   void changeSplash(int index) {
     print(index);
     switch (index) {
@@ -67,6 +65,10 @@ class SplashController extends GetxController {
       count.value = 2; // 当已经是第一张时，向左滑动到最后一张
     }
     changeSplash(count.value);
+  }
+
+  void login() {
+    Get.toNamed("/login");
   }
 
 }
