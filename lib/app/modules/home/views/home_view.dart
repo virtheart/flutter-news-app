@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
 import 'package:get/get.dart';
+import 'package:news/app/controllers/global_controller.dart';
 import 'package:news/components/category_component.dart';
+import 'package:news/components/custom_image.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 import '../controllers/home_controller.dart';
@@ -12,6 +15,7 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: const Color(0xFF040A0F),
       body: SingleChildScrollView(
@@ -40,44 +44,48 @@ class HomeView extends GetView<HomeController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // 头像
-                          Row(
-                            children: [
-                              Container(
-                                width: 40.w,
-                                height: 40.h,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image:
-                                        AssetImage('assets/images/avatar.png'),
-                                    fit: BoxFit.cover,
+                          GetBuilder<GlobalController>(
+                            builder: (globalController) => Row(
+                              children: [
+                                Container(
+                                  width: 40.w,
+                                  height: 40.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: CustomImage(
+                                      url: globalController.userInfo.value.appUser?.avatar ?? '',
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Welcome',
-                                    style: TextStyle(
-                                      color: const Color(0xFF8E9499),
-                                      fontSize: 10.sp,
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Welcome',
+                                      style: TextStyle(
+                                        color: const Color(0xFF8E9499),
+                                        fontSize: 10.sp,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Xiaoke',
-                                    style: TextStyle(
-                                      color: const Color(0xFFFFFFFF),
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold,
+                                    Text(
+                                      globalController.userInfo.value.appUser?.nickname ?? '',
+                                      style: TextStyle(
+                                        color: const Color(0xFFFFFFFF),
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              )
-                            ],
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                           // 搜索
                           Container(

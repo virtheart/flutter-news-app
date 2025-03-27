@@ -28,9 +28,9 @@ class DioService {
     // 初始化时尝试设置Authorization头
     try {
       final storage = HiveStorageService();
-      final token = storage.read('token');
-      if (token != null) {
-        dio.options.headers['Authorization'] = 'Bearer $token';
+      final accessToken = storage.read('accessToken');
+      if (accessToken != null) {
+        dio.options.headers['Authorization'] = 'Bearer $accessToken';
       }
     } catch (e) {
       print('Failed to initialize token from Hive: $e');
@@ -41,7 +41,7 @@ class DioService {
       onRequest: (options, handler) async {
         try {
           final storage = HiveStorageService();
-          final token = storage.read('token');
+          final token = storage.read('accessToken');
           if (token != null) {
             options.headers['Authorization'] = 'Bearer $token';
           }
