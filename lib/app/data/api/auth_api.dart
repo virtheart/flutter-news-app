@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../../../../services/DioService.dart';
+import 'package:news/services/DioService.dart';
 
 class AuthApi {
   static final Dio _dio = DioService.instance.getDio();

@@ -4,9 +4,9 @@ import 'package:news/services/HiveStorageService.dart';
 
 class RootController extends GetxController {
 
-  final count = 0.obs;
   final RxBool isSplash = false.obs; // 用于控制是否显示SplashScree
-  
+  final currentIndex = 0.obs; // 当前选中的页面索引
+
   @override
   void onInit() {
     super.onInit();
@@ -31,5 +31,8 @@ class RootController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void changePage(int index) {
+    currentIndex.value = index;
+  }
+  
 }

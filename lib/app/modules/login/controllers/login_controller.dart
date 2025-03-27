@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:news/app/data/api/auth_api.dart';
 import 'package:news/app/data/models/auth.dart';
 import 'package:news/app/routes/app_pages.dart';
@@ -34,7 +33,6 @@ class LoginController extends GetxController {
 
   void login() {
     final storage = HiveStorageService();
-    final token = storage.read('token');
     AuthApi.login(username: usernameController.text, password: passwordController.text).then((value) {
       final authData = AuthModel.fromJson(value.data);
       storage.save("accessToken", authData.accessToken);

@@ -300,7 +300,7 @@ packages:
     source: hosted
     version: "3.1.2"
   flutter_swiper_null_safety:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_swiper_null_safety
       sha256: "5a855e0080d035c08e82f8b7fd2f106344943a30c9ab483b2584860a2f22eaaf"
