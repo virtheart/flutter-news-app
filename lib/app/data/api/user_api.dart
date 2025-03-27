@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:news/app/data/models/user_info_model.dart';
 import 'package:news/services/DioService.dart';
 
 class UserApi {
@@ -8,4 +9,17 @@ class UserApi {
   static Future<Response> info() async {
     return await _dio.get('/app/appuser/info');
   }
+
+  // 修改个人信息
+  static Future<Response> updateUserInfo(AppUser data) async {
+    return await _dio.put('/edit', data: data);
+  }
+
+  // 修改密码
+  static Future<Response> updatePassword(String password) async {
+    return await _dio.put('/edit', data: {
+      'newpassword1': password
+    });
+  }
+
 }
