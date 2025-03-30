@@ -38,7 +38,7 @@ class DetailController extends GetxController {
       articleDetail.value = ArticleDetailModel.fromJson(value.data['data']),
       UserApi.queryUserInfo(articleDetail.value.createBy!).then((value) => {
         userInfo.value = UserInfoModel.fromJson(value.data['data']),
-      })
+      }),
     });
   }
 

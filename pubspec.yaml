@@ -48,6 +48,8 @@ dependencies:
   path_provider: ^2.1.5
   hive_flutter: ^1.1.0
   flutter_swiper_null_safety: ^1.0.2
+  flutter_html: ^3.0.0-beta.2
+  flutter_svg: ^2.0.17
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +82,7 @@ flutter:
     - assets/images/splash/
     - assets/images/icons/
     - assets/images/home/
+    - assets/svgs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
