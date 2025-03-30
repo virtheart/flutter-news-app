@@ -6,6 +6,7 @@ class RootController extends GetxController {
 
   final RxBool isSplash = false.obs; // 用于控制是否显示SplashScree
   final currentIndex = 0.obs; // 当前选中的页面索引
+  final navBarIndex = 0.obs; // 底部导航栏的选中状态
 
   @override
   void onInit() {
@@ -32,7 +33,24 @@ class RootController extends GetxController {
   }
 
   void changePage(int index) {
-    currentIndex.value = index;
+    if (index == 2) {
+      Get.toNamed(Routes.PUBLISH);
+      return;
+    }
+    // 更新底部导航栏索引
+    navBarIndex.value = index;
+    
+    // 映射底部导航栏索引到视图索引
+    // 索引0和1保持不变
+    // 索引3映射到视图索引2（NotificationView）
+    // 索引4映射到视图索引3（ProfileView）
+    if (index < 2) {
+      currentIndex.value = index;
+    } else if (index == 3) {
+      currentIndex.value = 2; // NotificationView
+    } else if (index == 4) {
+      currentIndex.value = 3; // ProfileView
+    }
   }
   
 }

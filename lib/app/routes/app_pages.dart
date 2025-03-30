@@ -12,6 +12,8 @@ import '../modules/notification/bindings/notification_binding.dart';
 import '../modules/notification/views/notification_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/publish/bindings/publish_binding.dart';
+import '../modules/publish/views/publish_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/root/bindings/root_binding.dart';
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.DETAIL,
       page: () => const DetailView(),
       binding: DetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.PUBLISH,
+      page: () => const PublishView(),
+      binding: PublishBinding(),
     ),
   ];
 }

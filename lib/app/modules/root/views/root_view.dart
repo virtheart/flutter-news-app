@@ -5,6 +5,7 @@ import 'package:news/app/modules/bookmark/views/bookmark_view.dart';
 import 'package:news/app/modules/home/views/home_view.dart';
 import 'package:news/app/modules/notification/views/notification_view.dart';
 import 'package:news/app/modules/profile/views/profile_view.dart';
+import 'package:news/app/routes/app_pages.dart';
 
 import '../controllers/root_controller.dart';
 
@@ -27,6 +28,7 @@ class RootView extends GetView<RootController> {
           ],
         ),
       ),
+
       bottomNavigationBar: Obx(
         () => Container(
           decoration: BoxDecoration(
@@ -45,8 +47,15 @@ class RootView extends GetView<RootController> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(60),
             child: BottomNavigationBar(
-              currentIndex: controller.currentIndex.value,
+              type: BottomNavigationBarType.fixed,
+              currentIndex: controller.navBarIndex.value,
               onTap: controller.changePage,
+              showSelectedLabels: true,
+              showUnselectedLabels: false,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.grey,
+              selectedFontSize: 12,
+              unselectedFontSize: 0,
               items: [
                 BottomNavigationBarItem(
                   backgroundColor: const Color(0xFF040A0F),
@@ -75,6 +84,23 @@ class RootView extends GetView<RootController> {
                     height: 24,
                   ),
                   label: '书签',
+                ),
+                BottomNavigationBarItem(
+                  backgroundColor: const Color(0xFF040A0F),
+                  icon: Container(
+                    height: 36,
+                    width: 36,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1E88E5),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                  label: '',
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: const Color(0xFF040A0F),

@@ -110,7 +110,7 @@ class HomeView extends GetView<HomeController> {
                                 ),
                                 Spacer(),
                                 Text(
-                                  'Search',
+                                  '搜索内容',
                                   style: TextStyle(
                                     color: Color(0xFF888888),
                                   ),
@@ -169,7 +169,7 @@ class HomeView extends GetView<HomeController> {
                       bottom: 16.h,
                     ),
                     child: Text(
-                      'Popular Category',
+                      '热门类别',
                       style: TextStyle(
                         color: const Color(0xFFFFFFFF),
                         fontSize: 18.sp,
@@ -191,7 +191,7 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Recommendation',
+                          '推荐内容',
                           style: TextStyle(
                             color: const Color(0xFFFFFFFF),
                             fontSize: 18.sp,

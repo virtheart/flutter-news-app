@@ -22,7 +22,7 @@ class NotificationView extends GetView<NotificationController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Notification',
+                  '通知中心',
                   style: TextStyle(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.bold,

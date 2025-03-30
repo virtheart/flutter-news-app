@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:news/app/controllers/global_controller.dart';
 import 'package:news/components/custom_image.dart';
 import 'package:news/components/preferences_item.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 import '../controllers/profile_controller.dart';
 
@@ -41,7 +42,8 @@ class ProfileView extends GetView<ProfileController> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(60),
                               child: CustomImage(
-                                url: global.userInfo.value.appUser?.avatar ?? '',
+                                url:
+                                    global.userInfo.value.appUser?.avatar ?? '',
                                 width: 80.r,
                                 height: 80.r,
                                 fit: BoxFit.cover,
@@ -102,7 +104,7 @@ class ProfileView extends GetView<ProfileController> {
                                   ),
                                 ),
                                 Text(
-                                  'Following',
+                                  '关注',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.normal,
@@ -127,7 +129,7 @@ class ProfileView extends GetView<ProfileController> {
                                   ),
                                 ),
                                 Text(
-                                  'Followers',
+                                  '粉丝',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.normal,
@@ -152,7 +154,7 @@ class ProfileView extends GetView<ProfileController> {
                                   ),
                                 ),
                                 Text(
-                                  'Published',
+                                  '发布',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.normal,
@@ -200,7 +202,7 @@ class ProfileView extends GetView<ProfileController> {
                               height: 44.h,
                               width: 163.w,
                               child: Text(
-                                'Preferences',
+                                '偏好设置',
                                 style: TextStyle(
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
@@ -226,7 +228,7 @@ class ProfileView extends GetView<ProfileController> {
                               height: 44.h,
                               width: 163.w,
                               child: Text(
-                                'Collection',
+                                '收藏',
                                 style: TextStyle(
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
@@ -255,8 +257,8 @@ class ProfileView extends GetView<ProfileController> {
                             height: 8.h,
                           ),
                           PreferencesItem(
-                            title: 'Account Preferences',
-                            subTitle: 'Edit name, username and display name',
+                            title: '账户偏好设置',
+                            subTitle: '编辑姓名、用户名和显示名称',
                             icon: 'assets/svgs/user.svg',
                             onTap: () {},
                           ),
@@ -264,11 +266,13 @@ class ProfileView extends GetView<ProfileController> {
                             height: 1.h,
                             width: double.infinity,
                             color: const Color(0xFF172530),
-                            margin: EdgeInsets.symmetric(vertical: 16.h,),
+                            margin: EdgeInsets.symmetric(
+                              vertical: 16.h,
+                            ),
                           ),
                           PreferencesItem(
-                            title: 'Dark Mode',
-                            subTitle: 'Dissable',
+                            title: '深色模式',
+                            subTitle: controller.isDarkMode.value ? '启用' : '禁用',
                             icon: 'assets/svgs/moon.svg',
                             trailing: Switch(
                               value: controller.isDarkMode.value,
@@ -281,11 +285,13 @@ class ProfileView extends GetView<ProfileController> {
                             height: 1.h,
                             width: double.infinity,
                             color: const Color(0xFF172530),
-                            margin: EdgeInsets.symmetric(vertical: 16.h,),
+                            margin: EdgeInsets.symmetric(
+                              vertical: 16.h,
+                            ),
                           ),
                           PreferencesItem(
-                            title: 'Privacy & Security',
-                            subTitle: 'Biometrics login & password',
+                            title: '隐私与安全',
+                            subTitle: '生物识别登录和密码',
                             icon: 'assets/svgs/shield-tick.svg',
                             onTap: () {},
                           ),
@@ -293,11 +299,13 @@ class ProfileView extends GetView<ProfileController> {
                             height: 1.h,
                             width: double.infinity,
                             color: const Color(0xFF172530),
-                            margin: EdgeInsets.symmetric(vertical: 16.h,),
+                            margin: EdgeInsets.symmetric(
+                              vertical: 16.h,
+                            ),
                           ),
                           PreferencesItem(
-                            title: 'Help Centre',
-                            subTitle: 'Terms and conditions, Privacy Policy',
+                            title: '帮助中心',
+                            subTitle: '条款和条件、隐私政策',
                             icon: 'assets/svgs/message-question.svg',
                             onTap: () {},
                           ),
@@ -310,7 +318,7 @@ class ProfileView extends GetView<ProfileController> {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(32.r),
-                                border: Border.all( 
+                                border: Border.all(
                                   color: const Color(0xFFFC4343),
                                   width: 1,
                                 ),
@@ -342,7 +350,11 @@ class ProfileView extends GetView<ProfileController> {
                         ],
                       ),
                     )
-                  : Container(),
+                  : const TDEmpty(
+                      type: TDEmptyType.plain,
+                      emptyText: '暂无收藏',
+                      emptyTextColor: Color(0xFF8E9499),
+                    ),
             ),
             SizedBox(
               height: 84.h,

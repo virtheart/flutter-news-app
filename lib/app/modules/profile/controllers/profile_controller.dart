@@ -5,7 +5,7 @@ class ProfileController extends GetxController {
   // 当前选中的索引
   var currentIndex = 0.obs;
   // 主题切换
-  var isDarkMode = false.obs;
+  var isDarkMode = true.obs;
 
   @override
   void onInit() {
