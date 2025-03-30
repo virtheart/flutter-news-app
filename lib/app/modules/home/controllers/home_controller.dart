@@ -5,6 +5,7 @@ import 'package:news/app/data/api/article_category_api.dart';
 import 'package:news/app/data/api/carousel_api.dart';
 import 'package:news/app/data/api/user_api.dart';
 import 'package:news/app/data/models/article_category_model.dart';
+import 'package:news/app/data/models/article_model.dart';
 import 'package:news/app/data/models/carousel_model.dart';
 import 'package:news/app/data/models/user_info_model.dart';
 
@@ -12,11 +13,13 @@ class HomeController extends GetxController {
 
   final articleCategoryList = <ArticleCategoryModel>[].obs;
   final carouselList = <CarouselModel>[].obs;
+  final recommendArticle = ArticleModel().obs;
 
   @override
   void onInit() {
     super.onInit();
     fetchArticleCategory();
+    fetchRecommendArticle();
     initUserInfo();
     initCarousel();
   }
@@ -41,7 +44,7 @@ class HomeController extends GetxController {
   // 获取推荐文章
   void fetchRecommendArticle() {
     ArticleApi.recommend().then((value) => {
-      print(value.data['data']),
+      recommendArticle.value = ArticleModel.fromJson(value.data['data']),
     });
   }
 

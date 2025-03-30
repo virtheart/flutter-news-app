@@ -210,42 +210,51 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(
-                      top: 28.h,
-                    ),
-                    height: 300.h,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: EdgeInsets.only(right: 16.w),
-                          width: 263.w,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://pixnio.com/free-images/2025/01/29/2025-01-29-12-35-46-768x430.png',
-                                  width: 263.w,
-                                  height: 142.h,
-                                  fit: BoxFit.cover,
+                  Obx(
+                    () => Container(
+                      padding: EdgeInsets.only(
+                        top: 28.h,
+                      ),
+                      height: 300.h,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount:
+                            controller.recommendArticle.value.records?.length ??
+                                0,
+                        itemBuilder: (context, index) {
+                          final data =
+                              controller.recommendArticle.value.records?[index];
+                          return Container(
+                            margin: EdgeInsets.only(right: 16.w),
+                            width: 263.w,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: CustomImage(
+                                    url: data!.image!,
+                                    width: 263.w,
+                                    height: 142.h,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 12.h),
-                              Text(
-                                'Snow Blankets the Sky, Creating a Winter Wonderland"',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold,
+                                SizedBox(height: 12.h),
+                                Text(
+                                  data.title!,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
