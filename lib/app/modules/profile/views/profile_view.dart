@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:news/app/controllers/global_controller.dart';
@@ -14,6 +15,7 @@ class ProfileView extends GetView<ProfileController> {
     return Scaffold(
       backgroundColor: const Color(0xFF040A0F),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
@@ -183,9 +185,13 @@ class ProfileView extends GetView<ProfileController> {
                           onTap: () {
                             controller.currentIndex.value = 0;
                           },
-                          child: Container(
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
                             decoration: BoxDecoration(
-                              color: controller.currentIndex.value == 0 ? const Color(0xFF172530) : Colors.transparent,
+                              color: controller.currentIndex.value == 0
+                                  ? const Color(0xFF172530)
+                                  : Colors.transparent,
                               borderRadius: BorderRadius.circular(32.r),
                             ),
                             alignment: Alignment.center,
@@ -205,9 +211,13 @@ class ProfileView extends GetView<ProfileController> {
                           onTap: () {
                             controller.currentIndex.value = 1;
                           },
-                          child: Container(
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
                             decoration: BoxDecoration(
-                              color: controller.currentIndex.value == 1 ? const Color(0xFF172530) : Colors.transparent,
+                              color: controller.currentIndex.value == 1
+                                  ? const Color(0xFF172530)
+                                  : Colors.transparent,
                               borderRadius: BorderRadius.circular(32.r),
                             ),
                             alignment: Alignment.center,
@@ -229,6 +239,65 @@ class ProfileView extends GetView<ProfileController> {
                 ],
               ),
             ),
+          ),
+          Obx(
+            () =>
+                controller.currentIndex.value == 0 ? Container(
+                  margin: EdgeInsets.only(
+                    left: 20.w,
+                    right: 20.w,
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 52.r,
+                            height: 52.r,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF081117),
+                              borderRadius: BorderRadius.circular(32.r),
+                            ),
+                            padding: EdgeInsets.all(14.r),
+                            child: SvgPicture.asset(
+                              'assets/svgs/user.svg',
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12.w,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Nickname',
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'Change your nickname',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.normal,
+                                  color: const Color(0xFF8E9499),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          const Icon(
+                            Icons.arrow_forward_ios,
+                            color: Color(0xFF8E9499),
+                          ),
+                        ]
+                      )
+                    ],
+                  ),
+                ) : Container(),
           ),
         ],
       ),
