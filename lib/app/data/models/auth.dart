@@ -57,24 +57,24 @@ class AuthModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['sub'] = this.sub;
-    data['iss'] = this.iss;
-    data['active'] = this.active;
-    data['token_type'] = this.tokenType;
-    data['client_id'] = this.clientId;
-    data['access_token'] = this.accessToken;
-    data['refresh_token'] = this.refreshToken;
-    data['aud'] = this.aud;
-    data['license'] = this.license;
-    data['nbf'] = this.nbf;
-    data['user_id'] = this.userId;
-    data['scope'] = this.scope;
-    data['exp'] = this.exp;
-    data['expires_in'] = this.expiresIn;
-    data['iat'] = this.iat;
-    data['jti'] = this.jti;
-    data['username'] = this.username;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['sub'] = sub;
+    data['iss'] = iss;
+    data['active'] = active;
+    data['token_type'] = tokenType;
+    data['client_id'] = clientId;
+    data['access_token'] = accessToken;
+    data['refresh_token'] = refreshToken;
+    data['aud'] = aud;
+    data['license'] = license;
+    data['nbf'] = nbf;
+    data['user_id'] = userId;
+    data['scope'] = scope;
+    data['exp'] = exp;
+    data['expires_in'] = expiresIn;
+    data['iat'] = iat;
+    data['jti'] = jti;
+    data['username'] = username;
     return data;
   }
 }

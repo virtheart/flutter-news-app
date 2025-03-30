@@ -33,16 +33,16 @@ class ArticleCategoryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['sort'] = this.sort;
-    data['isShow'] = this.isShow;
-    data['createBy'] = this.createBy;
-    data['createTime'] = this.createTime;
-    data['updateBy'] = this.updateBy;
-    data['updateTime'] = this.updateTime;
-    data['delFlag'] = this.delFlag;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['sort'] = sort;
+    data['isShow'] = isShow;
+    data['createBy'] = createBy;
+    data['createTime'] = createTime;
+    data['updateBy'] = updateBy;
+    data['updateTime'] = updateTime;
+    data['delFlag'] = delFlag;
     return data;
   }
 }

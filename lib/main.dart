@@ -16,13 +16,9 @@ void main() async {
   // 初始化Hive全局存储
   await HiveStorageService().init();
 
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //   statusBarColor: Colors.transparent,
-  //   statusBarIconBrightness: Brightness.light,
-  // ));
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // 状态栏背景颜色
-    statusBarIconBrightness: Brightness.dark, // dark: 通常显示为黑色图标
+    statusBarIconBrightness: Brightness.light, // dark: 通常显示为黑色图标
   ));
 
   // 初始化Dio
@@ -55,7 +51,6 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
         );
       },

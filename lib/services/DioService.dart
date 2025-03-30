@@ -1,10 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
+import 'package:news/app/routes/app_pages.dart';
 import 'package:news/services/HiveStorageService.dart';
 
 class DioService {
   // 私有静态实例
   static final DioService _instance = DioService._internal();
+  
+  // Logger实例
+  static final Logger _logger = Logger();
   
   // Dio实例
   late final Dio dio;
@@ -33,7 +39,7 @@ class DioService {
         dio.options.headers['Authorization'] = 'Bearer $accessToken';
       }
     } catch (e) {
-      print('Failed to initialize token from Hive: $e');
+      _logger.e('Failed to initialize token from Hive', error: e);
     }
     
     // 添加拦截器
@@ -52,6 +58,7 @@ class DioService {
         }
       },
       onError: (error, handler) async {
+        final storage = HiveStorageService();
         if (error.response?.statusCode == 401) {
           try {
             final responseData = error.response?.data;
@@ -66,6 +73,22 @@ class DioService {
             print('Failed to handle 401 error: $e');
           }
         }
+
+        _logger.e('Dio error: ', error: error.response?.statusCode);
+        _logger.e('Dio error: ', error: error.response?.data);
+
+        // TODO: 需要单独处理，登录过期
+        if (error.response?.statusCode == 424 && error.response?.data['msg'] == '用户凭证已过期' && storage.read('accessToken') != null) {
+          // 延迟1秒执行
+          Future.delayed(const Duration(seconds: 1), () {
+            // 清空所有缓存
+            storage.clearAll();
+            Get.offAllNamed(Routes.LOGIN);
+            Get.snackbar('系统提示', error.response?.data['msg']);
+          });
+          return;
+        }
+
         return handler.next(error);
       },
     ));

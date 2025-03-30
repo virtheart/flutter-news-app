@@ -7,18 +7,18 @@ class UserInfoModel {
 
   UserInfoModel.fromJson(Map<String, dynamic> json) {
     appUser =
-        json['appUser'] != null ? new AppUser.fromJson(json['appUser']) : null;
+        json['appUser'] != null ? AppUser.fromJson(json['appUser']) : null;
     permissions = json['permissions'].cast<String>();
     roles = json['roles'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.appUser != null) {
-      data['appUser'] = this.appUser!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (appUser != null) {
+      data['appUser'] = appUser!.toJson();
     }
-    data['permissions'] = this.permissions;
-    data['roles'] = this.roles;
+    data['permissions'] = permissions;
+    data['roles'] = roles;
     return data;
   }
 }
@@ -106,32 +106,32 @@ class AppUser {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this.userId;
-    data['username'] = this.username;
-    data['password'] = this.password;
-    data['createBy'] = this.createBy;
-    data['updateBy'] = this.updateBy;
-    data['createTime'] = this.createTime;
-    data['updateTime'] = this.updateTime;
-    data['delFlag'] = this.delFlag;
-    data['lockFlag'] = this.lockFlag;
-    data['passwordExpireFlag'] = this.passwordExpireFlag;
-    data['passwordModifyTime'] = this.passwordModifyTime;
-    data['phone'] = this.phone;
-    data['avatar'] = this.avatar;
-    data['deptId'] = this.deptId;
-    data['tenantId'] = this.tenantId;
-    data['wxOpenid'] = this.wxOpenid;
-    data['wxCpUserid'] = this.wxCpUserid;
-    data['wxDingUserid'] = this.wxDingUserid;
-    data['miniOpenid'] = this.miniOpenid;
-    data['qqOpenid'] = this.qqOpenid;
-    data['giteeLogin'] = this.giteeLogin;
-    data['oscId'] = this.oscId;
-    data['nickname'] = this.nickname;
-    data['name'] = this.name;
-    data['email'] = this.email;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['username'] = username;
+    data['password'] = password;
+    data['createBy'] = createBy;
+    data['updateBy'] = updateBy;
+    data['createTime'] = createTime;
+    data['updateTime'] = updateTime;
+    data['delFlag'] = delFlag;
+    data['lockFlag'] = lockFlag;
+    data['passwordExpireFlag'] = passwordExpireFlag;
+    data['passwordModifyTime'] = passwordModifyTime;
+    data['phone'] = phone;
+    data['avatar'] = avatar;
+    data['deptId'] = deptId;
+    data['tenantId'] = tenantId;
+    data['wxOpenid'] = wxOpenid;
+    data['wxCpUserid'] = wxCpUserid;
+    data['wxDingUserid'] = wxDingUserid;
+    data['miniOpenid'] = miniOpenid;
+    data['qqOpenid'] = qqOpenid;
+    data['giteeLogin'] = giteeLogin;
+    data['oscId'] = oscId;
+    data['nickname'] = nickname;
+    data['name'] = name;
+    data['email'] = email;
     return data;
   }
 }

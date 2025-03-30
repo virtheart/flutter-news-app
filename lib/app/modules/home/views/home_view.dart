@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:news/app/controllers/global_controller.dart';
 import 'package:news/components/category_component.dart';
 import 'package:news/components/custom_image.dart';
+import 'package:news/config.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 import '../controllers/home_controller.dart';
@@ -15,7 +15,6 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color(0xFF040A0F),
       body: SingleChildScrollView(
@@ -56,7 +55,9 @@ class HomeView extends GetView<HomeController> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
                                     child: CustomImage(
-                                      url: globalController.userInfo.value.appUser?.avatar ?? '',
+                                      url: globalController
+                                              .userInfo.value.appUser?.avatar ??
+                                          '',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -75,7 +76,9 @@ class HomeView extends GetView<HomeController> {
                                       ),
                                     ),
                                     Text(
-                                      globalController.userInfo.value.appUser?.nickname ?? '',
+                                      globalController.userInfo.value.appUser
+                                              ?.nickname ??
+                                          '',
                                       style: TextStyle(
                                         color: const Color(0xFFFFFFFF),
                                         fontSize: 14.sp,
@@ -118,31 +121,33 @@ class HomeView extends GetView<HomeController> {
                         ],
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: 32.h,
-                      ),
-                      height: 253.h,
-                      child: Swiper(
-                        viewportFraction: 0.88,
-                        outer: true,
-                        autoplay: true,
-                        itemCount: 6,
-                        loop: true,
-                        transformer:
-                            TDPageTransformer.scaleAndFade(scale: 0.88),
-                        pagination: const SwiperPagination(
-                          alignment: Alignment.center,
-                          builder: TDSwiperPagination.dotsBar,
+                    Obx(
+                      () => Container(
+                        padding: EdgeInsets.only(
+                          top: 32.h,
                         ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return const TDImage(
-                            imgUrl:
-                                'https://pixnio.com/free-images/2025/01/29/2025-01-29-12-35-46-768x430.png',
-                          );
-                        },
+                        height: 253.h,
+                        child: Swiper(
+                          viewportFraction: 0.88,
+                          outer: true,
+                          autoplay: true,
+                          itemCount: controller.carouselList.length,
+                          loop: true,
+                          transformer:
+                              TDPageTransformer.scaleAndFade(scale: 0.88),
+                          pagination: const SwiperPagination(
+                            alignment: Alignment.center,
+                            builder: TDSwiperPagination.dotsBar,
+                          ),
+                          itemBuilder: (BuildContext context, int index) {
+                            final data = controller.carouselList[index];
+                            return TDImage(
+                              imgUrl: AppConfig.baseUrl + data.image!,
+                            );
+                          },
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],

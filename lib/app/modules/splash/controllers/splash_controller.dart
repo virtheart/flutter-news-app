@@ -35,7 +35,6 @@ class SplashController extends GetxController {
   }
 
   void changeSplash(int index) {
-    print(index);
     switch (index) {
       case 0:
         splashImage.value = "assets/images/splash/splash1.png";
