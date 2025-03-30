@@ -213,9 +213,9 @@ class HomeView extends GetView<HomeController> {
                   Obx(
                     () => Container(
                       padding: EdgeInsets.only(
-                        top: 28.h,
+                        top: 16.h,
                       ),
-                      height: 300.h,
+                      height: 235.h,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount:
@@ -250,6 +250,46 @@ class HomeView extends GetView<HomeController> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
+                                SizedBox(height: 6.h),
+                                Row(children: [
+                                  Text(
+                                    data.author!,
+                                    style: TextStyle(
+                                      color: const Color(0xFF888888),
+                                      fontSize: 12.sp,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 3.r,
+                                    height: 3.r,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF8E9499),
+                                      borderRadius: BorderRadius.circular(1.r),
+                                    ),
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 6.w),
+                                  ),
+                                  Text(data.createTime.toString(),
+                                      style: TextStyle(
+                                        color: const Color(0xFF888888),
+                                        fontSize: 12.sp,
+                                      )),
+                                  Container(
+                                    width: 3.r,
+                                    height: 3.r,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF8E9499),
+                                      borderRadius: BorderRadius.circular(1.r),
+                                    ),
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 6.w),
+                                  ),
+                                  Text(data.cname.toString(),
+                                      style: TextStyle(
+                                        color: const Color(0xFF888888),
+                                        fontSize: 12.sp,
+                                      )),
+                                ])
                               ],
                             ),
                           );
@@ -257,8 +297,214 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 16.h,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '热门推荐',
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFFFFFFFF),
+                          ),
+                        ),
+                        const Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            // 跳转到更多页面
+                          },
+                          child: const Text(
+                            'View All',
+                            style: TextStyle(
+                              color: Color(0xFF888888),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GetBuilder<HomeController>(
+                    id: 'currentCategory',
+                    builder: (homeController) => Container(
+                      padding: EdgeInsets.only(
+                        top: 16.h,
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 40.h,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  homeController.articleCategoryList.length,
+                              itemBuilder: (_, index) {
+                                final data =
+                                    controller.articleCategoryList[index];
+                                return GestureDetector(
+                                  onTap: () =>
+                                      homeController.switchCategory(index),
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 16.w,
+                                      vertical: 8.h,
+                                    ),
+                                    height: 40.h,
+                                    decoration: BoxDecoration(
+                                      color: homeController
+                                                  .currentCategory.value ==
+                                              index
+                                          ? const Color(0xFF3057FF)
+                                          : Colors.transparent,
+                                      borderRadius:
+                                          BorderRadius.circular(32.sp),
+                                      border: Border.all(
+                                        color: homeController
+                                                    .currentCategory.value ==
+                                                index
+                                            ? const Color(0xFF3057FF)
+                                            : const Color(0xFF8E9499),
+                                      ),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      data.name.toString(),
+                                      style: TextStyle(
+                                        color: const Color(0xFFFFFFFF),
+                                        fontSize: 14.sp,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return SizedBox(
+                                  width: 12.w,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Obx(
+                    () => ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller
+                              .currentCategoryArticle.value.records?.length ??
+                          0,
+                      itemBuilder: (_, index) {
+                        final data = controller
+                            .currentCategoryArticle.value.records?[index];
+                        return Container(
+                          height: 126.h,
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(
+                                color: const Color(0xFF0C1923),
+                                width: 2.w,
+                              ),
+                            ),
+                          ),
+                          padding: EdgeInsets.all(20.r),
+                          child: Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: CustomImage(
+                                  url: data?.image ?? '',
+                                  width: 86.w,
+                                  height: 86.h,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 16.w,
+                              ),
+                              Container(
+                                width: 190.w,
+                                margin: EdgeInsets.symmetric(
+                                  vertical: 6.h,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      data?.title.toString() ?? '',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Row(children: [
+                                      Text(
+                                        data?.author.toString() ?? '',
+                                        style: TextStyle(
+                                          color: const Color(0xFF888888),
+                                          fontSize: 10.sp,
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 3.r,
+                                        height: 3.r,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF8E9499),
+                                          borderRadius:
+                                              BorderRadius.circular(1.r),
+                                        ),
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 6.w),
+                                      ),
+                                      Text(
+                                        data?.createTime.toString() ?? '',
+                                        style: TextStyle(
+                                          color: const Color(0xFF888888),
+                                          fontSize: 10.sp,
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 3.r,
+                                        height: 3.r,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF8E9499),
+                                          borderRadius:
+                                              BorderRadius.circular(1.r),
+                                        ),
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 6.w),
+                                      ),
+                                      Text(
+                                        data?.cname.toString() ?? '',
+                                        style: TextStyle(
+                                          color: const Color(0xFF888888),
+                                          fontSize: 10.sp,
+                                        ),
+                                      ),
+                                    ])
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 20.h,
             ),
           ],
         ),

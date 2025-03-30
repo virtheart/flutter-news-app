@@ -15,6 +15,12 @@ class HomeController extends GetxController {
   final carouselList = <CarouselModel>[].obs;
   final recommendArticle = ArticleModel().obs;
 
+  // 当前选中的分类
+  final currentCategory = 0.obs;
+
+  // 当前选中分类的文章
+  final currentCategoryArticle = ArticleModel().obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -38,6 +44,7 @@ class HomeController extends GetxController {
   void fetchArticleCategory() {
     ArticleCategoryApi.list().then((value) => {
       articleCategoryList.value = (value.data['data'] as List).map((item) => ArticleCategoryModel.fromJson(item)).toList(),
+      update(['currentCategory']),
     });
   }
 
@@ -62,6 +69,15 @@ class HomeController extends GetxController {
     CarouselApi.list().then((value) => {
       carouselList.value = (value.data['data'] as List).map((item) => CarouselModel.fromJson(item)).toList(),
     });
+  }
+
+  // 切换分类
+  void switchCategory(int index) {
+    currentCategory.value = index;
+    ArticleApi.page(cid: articleCategoryList[index].id!).then((value) => {
+      currentCategoryArticle.value = ArticleModel.fromJson(value.data['data']),
+    });
+    update(['currentCategoryArticle', 'currentCategory']);
   }
 
 }
