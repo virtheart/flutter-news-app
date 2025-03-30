@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
+import 'package:news/components/custom_image.dart';
 import 'package:news/config.dart';
 
 import '../controllers/detail_controller.dart';
@@ -164,6 +167,15 @@ class DetailView extends GetView<DetailController> {
                                   padding: HtmlPaddings.all(4), // 内边距
                                 ),
                               },
+                              extensions: [
+                                TagExtension(
+                                  tagsToExtend: {"img"},
+                                  builder: (extensionContext) {
+                                    final src = extensionContext.attributes['src'];
+                                    return CachedNetworkImage(imageUrl: AppConfig.detailUrl +  src!);
+                                  }
+                                ),
+                              ],
                             )),
                         // 相关文章
                         Container(
