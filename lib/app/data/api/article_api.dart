@@ -6,8 +6,8 @@ class ArticleApi {
   static final Dio _dio = DioService.instance.getDio();
 
   /// 推荐文章
-  static Future<Response> recommend() async {
-    return await _dio.get('/app/appArticle/recommend');
+  static Future<Response> recommend({int current = 1, int size = 10}) async {
+    return await _dio.get('/app/appArticle/recommend', queryParameters: {'current': current, 'size': size});
   }
 
 }
