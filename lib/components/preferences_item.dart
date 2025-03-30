@@ -64,7 +64,7 @@ class PreferencesItem extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          const Icon(
+          trailing ?? const Icon(
             Icons.arrow_forward_ios,
             color: Color(0xFF8E9499),
           ),

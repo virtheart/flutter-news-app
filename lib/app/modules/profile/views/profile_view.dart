@@ -271,10 +271,11 @@ class ProfileView extends GetView<ProfileController> {
                             subTitle: 'Dissable',
                             icon: 'assets/svgs/moon.svg',
                             trailing: Switch(
-                              value: false,
-                              onChanged: (value) {},
+                              value: controller.isDarkMode.value,
+                              onChanged: (value) {
+                                controller.toggleTheme(value);
+                              },
                             ),
-                            onTap: () {},
                           ),
                           Container(
                             height: 1.h,
