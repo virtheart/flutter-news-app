@@ -141,8 +141,11 @@ class HomeView extends GetView<HomeController> {
                           ),
                           itemBuilder: (BuildContext context, int index) {
                             final data = controller.carouselList[index];
-                            return TDImage(
-                              imgUrl: AppConfig.baseUrl + data.image!,
+                            return GestureDetector(
+                              onTap: () => controller.onCarouselTap(index),
+                              child: TDImage(
+                                imgUrl: AppConfig.baseUrl + data.image!,
+                              ),
                             );
                           },
                         ),

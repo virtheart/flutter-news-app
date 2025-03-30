@@ -8,6 +8,7 @@ import 'package:news/app/data/models/article_category_model.dart';
 import 'package:news/app/data/models/article_model.dart';
 import 'package:news/app/data/models/carousel_model.dart';
 import 'package:news/app/data/models/user_info_model.dart';
+import 'package:news/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
 
@@ -78,6 +79,11 @@ class HomeController extends GetxController {
       currentCategoryArticle.value = ArticleModel.fromJson(value.data['data']),
     });
     update(['currentCategoryArticle', 'currentCategory']);
+  }
+
+  // 轮播图点击
+  void onCarouselTap (int index) {
+    Get.toNamed(Routes.DETAIL, arguments: {'id': carouselList[index].id});
   }
 
 }

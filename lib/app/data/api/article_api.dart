@@ -15,4 +15,9 @@ class ArticleApi {
     return await _dio.get('/app/appArticle/recommend', queryParameters: {'current': current, 'size': size});
   }
 
+  /// 文章详情
+  static Future<Response> detail({required String id, required String userId}) async {
+    return await _dio.get('/app/appArticle/details/$id/$userId');
+  }
+
 }
