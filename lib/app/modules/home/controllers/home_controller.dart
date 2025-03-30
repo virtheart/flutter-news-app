@@ -83,7 +83,7 @@ class HomeController extends GetxController {
 
   // 轮播图点击
   void onCarouselTap (int index) {
-    Get.toNamed(Routes.DETAIL, arguments: {'id': carouselList[index].id});
+    Get.toNamed(Routes.DETAIL, arguments: {'id': carouselList[index].appArticle?.id});
   }
 
 }

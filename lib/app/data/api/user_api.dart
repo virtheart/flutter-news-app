@@ -22,4 +22,9 @@ class UserApi {
     });
   }
 
+  // 查询用户信息
+  static Future<Response> queryUserInfo(String username) async {
+    return await _dio.get('/app/appuser/info/$username');
+  }
+
 }

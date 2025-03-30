@@ -17,6 +17,7 @@ class ArticleApi {
 
   /// 文章详情
   static Future<Response> detail({required String id, required String userId}) async {
+    print('/app/appArticle/details/$id/$userId');
     return await _dio.get('/app/appArticle/details/$id/$userId');
   }
 
