@@ -162,9 +162,74 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
-          )
+          ),
+          Obx(
+            () => Container(
+              margin: EdgeInsets.all(20.r),
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(4.r),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF081117),
+                      borderRadius: BorderRadius.circular(32.r),
+                    ),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            controller.currentIndex.value = 0;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: controller.currentIndex.value == 0 ? const Color(0xFF172530) : Colors.transparent,
+                              borderRadius: BorderRadius.circular(32.r),
+                            ),
+                            alignment: Alignment.center,
+                            height: 44.h,
+                            width: 163.w,
+                            child: Text(
+                              'Preferences',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            controller.currentIndex.value = 1;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: controller.currentIndex.value == 1 ? const Color(0xFF172530) : Colors.transparent,
+                              borderRadius: BorderRadius.circular(32.r),
+                            ),
+                            alignment: Alignment.center,
+                            height: 44.h,
+                            width: 163.w,
+                            child: Text(
+                              'Collection',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

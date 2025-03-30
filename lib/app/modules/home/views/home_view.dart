@@ -227,73 +227,76 @@ class HomeView extends GetView<HomeController> {
                         itemBuilder: (context, index) {
                           final data =
                               controller.recommendArticle.value.records?[index];
-                          return Container(
-                            margin: EdgeInsets.only(right: 16.w),
-                            width: 263.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: CustomImage(
-                                    url: data!.image!,
-                                    width: 263.w,
-                                    height: 142.h,
-                                    fit: BoxFit.cover,
+                          return GestureDetector(
+                            onTap: () => controller.onRecommendArticleTap(data.id!),
+                            child: Container(
+                              margin: EdgeInsets.only(right: 16.w),
+                              width: 263.w,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: CustomImage(
+                                      url: data!.image!,
+                                      width: 263.w,
+                                      height: 142.h,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 12.h),
-                                Text(
-                                  data.title!,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: 6.h),
-                                Row(children: [
+                                  SizedBox(height: 12.h),
                                   Text(
-                                    data.author!,
+                                    data.title!,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      color: const Color(0xFF888888),
-                                      fontSize: 12.sp,
+                                      color: Colors.white,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Container(
-                                    width: 3.r,
-                                    height: 3.r,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF8E9499),
-                                      borderRadius: BorderRadius.circular(1.r),
-                                    ),
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 6.w),
-                                  ),
-                                  Text(data.createTime.toString(),
+                                  SizedBox(height: 6.h),
+                                  Row(children: [
+                                    Text(
+                                      data.author!,
                                       style: TextStyle(
                                         color: const Color(0xFF888888),
                                         fontSize: 12.sp,
-                                      )),
-                                  Container(
-                                    width: 3.r,
-                                    height: 3.r,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF8E9499),
-                                      borderRadius: BorderRadius.circular(1.r),
+                                      ),
                                     ),
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 6.w),
-                                  ),
-                                  Text(data.cname.toString(),
-                                      style: TextStyle(
-                                        color: const Color(0xFF888888),
-                                        fontSize: 12.sp,
-                                      )),
-                                ])
-                              ],
+                                    Container(
+                                      width: 3.r,
+                                      height: 3.r,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFF8E9499),
+                                        borderRadius: BorderRadius.circular(1.r),
+                                      ),
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 6.w),
+                                    ),
+                                    Text(data.createTime.toString(),
+                                        style: TextStyle(
+                                          color: const Color(0xFF888888),
+                                          fontSize: 12.sp,
+                                        )),
+                                    Container(
+                                      width: 3.r,
+                                      height: 3.r,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFF8E9499),
+                                        borderRadius: BorderRadius.circular(1.r),
+                                      ),
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 6.w),
+                                    ),
+                                    Text(data.cname.toString(),
+                                        style: TextStyle(
+                                          color: const Color(0xFF888888),
+                                          fontSize: 12.sp,
+                                        )),
+                                  ])
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -404,100 +407,103 @@ class HomeView extends GetView<HomeController> {
                       itemBuilder: (_, index) {
                         final data = controller
                             .currentCategoryArticle.value.records?[index];
-                        return Container(
-                          height: 126.h,
-                          decoration: BoxDecoration(
-                            border: Border(
-                              top: BorderSide(
-                                color: const Color(0xFF0C1923),
-                                width: 2.w,
+                        return GestureDetector(
+                          onTap: () => controller.onCategoryArticleTap(data!.id!),
+                          child: Container(
+                            height: 126.h,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  color: const Color(0xFF0C1923),
+                                  width: 2.w,
+                                ),
                               ),
                             ),
-                          ),
-                          padding: EdgeInsets.all(20.r),
-                          child: Row(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: CustomImage(
-                                  url: data?.image ?? '',
-                                  width: 86.w,
-                                  height: 86.h,
-                                  fit: BoxFit.cover,
+                            padding: EdgeInsets.all(20.r),
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: CustomImage(
+                                    url: data?.image ?? '',
+                                    width: 86.w,
+                                    height: 86.h,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 16.w,
-                              ),
-                              Container(
-                                width: 190.w,
-                                margin: EdgeInsets.symmetric(
-                                  vertical: 6.h,
+                                SizedBox(
+                                  width: 16.w,
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      data?.title.toString() ?? '',
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Row(children: [
+                                Container(
+                                  width: 190.w,
+                                  margin: EdgeInsets.symmetric(
+                                    vertical: 6.h,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
                                       Text(
-                                        data?.author.toString() ?? '',
+                                        data?.title.toString() ?? '',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
-                                          color: const Color(0xFF888888),
-                                          fontSize: 10.sp,
+                                          color: Colors.white,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      Container(
-                                        width: 3.r,
-                                        height: 3.r,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFF8E9499),
-                                          borderRadius:
-                                              BorderRadius.circular(1.r),
+                                      Row(children: [
+                                        Text(
+                                          data?.author.toString() ?? '',
+                                          style: TextStyle(
+                                            color: const Color(0xFF888888),
+                                            fontSize: 10.sp,
+                                          ),
                                         ),
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 6.w),
-                                      ),
-                                      Text(
-                                        data?.createTime.toString() ?? '',
-                                        style: TextStyle(
-                                          color: const Color(0xFF888888),
-                                          fontSize: 10.sp,
+                                        Container(
+                                          width: 3.r,
+                                          height: 3.r,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF8E9499),
+                                            borderRadius:
+                                                BorderRadius.circular(1.r),
+                                          ),
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 6.w),
                                         ),
-                                      ),
-                                      Container(
-                                        width: 3.r,
-                                        height: 3.r,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFF8E9499),
-                                          borderRadius:
-                                              BorderRadius.circular(1.r),
+                                        Text(
+                                          data?.createTime.toString() ?? '',
+                                          style: TextStyle(
+                                            color: const Color(0xFF888888),
+                                            fontSize: 10.sp,
+                                          ),
                                         ),
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 6.w),
-                                      ),
-                                      Text(
-                                        data?.cname.toString() ?? '',
-                                        style: TextStyle(
-                                          color: const Color(0xFF888888),
-                                          fontSize: 10.sp,
+                                        Container(
+                                          width: 3.r,
+                                          height: 3.r,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF8E9499),
+                                            borderRadius:
+                                                BorderRadius.circular(1.r),
+                                          ),
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 6.w),
                                         ),
-                                      ),
-                                    ])
-                                  ],
-                                ),
-                              )
-                            ],
+                                        Text(
+                                          data?.cname.toString() ?? '',
+                                          style: TextStyle(
+                                            color: const Color(0xFF888888),
+                                            fontSize: 10.sp,
+                                          ),
+                                        ),
+                                      ])
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         );
                       },

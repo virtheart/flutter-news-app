@@ -17,6 +17,7 @@ class DetailView extends GetView<DetailController> {
       body: Stack(
         children: [
           SingleChildScrollView(
+            controller: controller.scrollController,
             child: Obx(
               () => controller.articleDetail.value.id == null
                   ? const Center(child: CircularProgressIndicator())
@@ -143,19 +144,6 @@ class DetailView extends GetView<DetailController> {
                                       ],
                                     )
                                   : Container(),
-                              // Container(
-                              //   height: 425.h,
-                              //   decoration: BoxDecoration(
-                              //     gradient: LinearGradient(
-                              //       begin: Alignment.topCenter,
-                              //       end: Alignment.bottomCenter,
-                              //       colors: [
-                              //         Colors.transparent,
-                              //         Colors.black.withOpacity(0.5),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // ),
                             ]),
                           ),
                         ),
@@ -290,56 +278,124 @@ class DetailView extends GetView<DetailController> {
             ),
           ),
           // 显示在底部，可以将这个容器放在 Stack 中，并使用 Positioned 定位到底部
-          Positioned(
-            bottom: 16.h,
-            left: 78.w,
-            right: 78.w,
-            child: Container(
-              height: 50.h, // 可以根据需要设置高度
-              width: 218.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.r),
-                color: const Color(0xFF0D1B25),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3), // 阴影颜色
-                    spreadRadius: 2, // 阴影扩散程度
-                    blurRadius: 5, // 阴影模糊程度
-                    offset: const Offset(0, 3), // 阴影偏移量
-                  ),
-                ],
+          GetBuilder<DetailController>(
+            id: 'detail',
+            builder: (detailController) => Container(
+              alignment: Alignment.bottomCenter,
+              margin: EdgeInsets.only(
+                bottom: 16.h,
               ),
-              child: Center(
+              child: Container(
+                height: 50.h, // 可以根据需要设置高度
+                width: detailController.scrollOffset.value > 180 ? 300.w : 248.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color(0xFF0D1B25),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3), // 阴影颜色
+                      spreadRadius: 2, // 阴影扩散程度
+                      blurRadius: 5, // 阴影模糊程度
+                      offset: const Offset(0, 3), // 阴影偏移量
+                    ),
+                  ],
+                ),
                 child: Row(
                   children: [
-                    IconButton(
-                      onPressed: () => Get.back(),
-                      icon: const Icon(Icons.arrow_back,
-                          color: Colors.white), // 设置图标颜色为白色
-                      style: IconButton.styleFrom(
-                        backgroundColor: Colors.white.withOpacity(0.1),
+                    detailController.scrollOffset.value > 180
+                        ? Row(
+                            children: [
+                              IconButton(
+                                onPressed: () => Get.back(),
+                                icon: const Icon(Icons.arrow_back,
+                                    color: Colors.white), // 设置图标颜色为白色
+                                style: IconButton.styleFrom(
+                                  backgroundColor:
+                                      Colors.white.withOpacity(0.1),
+                                ),
+                              ),
+                            ],
+                          )
+                        : Container(),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/svgs/like.svg',
+                                width: 20.w,
+                                height: 20.h,
+                              ),
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Text(
+                                '128',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 20.w,
+                          ),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/svgs/message.svg',
+                                width: 20.w,
+                                height: 20.h,
+                              ),
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Text(
+                                '128',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 20.w,
+                          ),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/svgs/archive-minus.svg',
+                                width: 20.w,
+                                height: 20.h,
+                              ),
+                              SizedBox(
+                                width: 6.w,
+                              ),
+                              Text(
+                                '82',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    Container(
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/svg/like.svg',
-                            width: 20.w,
-                            height: 20.h,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            '收藏',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ]
-                      ),
-                    )
+                    SizedBox(
+                      width: 20.w,
+                    ),
                   ],
                 ),
               ),

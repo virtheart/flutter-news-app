@@ -86,4 +86,14 @@ class HomeController extends GetxController {
     Get.toNamed(Routes.DETAIL, arguments: {'id': carouselList[index].appArticle?.id});
   }
 
+  // 推荐文章点击
+  void onRecommendArticleTap (String id) {
+    Get.toNamed(Routes.DETAIL, arguments: {'id': id});
+  }
+
+  // 分类文章点击
+  void onCategoryArticleTap (String id) {
+    Get.toNamed(Routes.DETAIL, arguments: {'id': id});
+  }
+
 }

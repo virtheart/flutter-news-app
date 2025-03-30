@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:news/app/modules/home/controllers/home_controller.dart';
+import 'package:news/app/modules/profile/controllers/profile_controller.dart';
 
 import '../controllers/root_controller.dart';
 
@@ -8,5 +9,6 @@ class RootBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<RootController>(() => RootController());
     Get.lazyPut<HomeController>(() => HomeController());
+    Get.lazyPut<ProfileController>(() => ProfileController());
   }
 }
