@@ -9,6 +9,7 @@ class BookmarkView extends GetView<BookmarkController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF040A0F),
       appBar: AppBar(
         title: const Text('BookmarkView'),
         centerTitle: true,

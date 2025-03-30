@@ -28,7 +28,6 @@ class RootView extends GetView<RootController> {
           ],
         ),
       ),
-
       bottomNavigationBar: Obx(
         () => Container(
           decoration: BoxDecoration(
@@ -47,7 +46,6 @@ class RootView extends GetView<RootController> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(60),
             child: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
               currentIndex: controller.navBarIndex.value,
               onTap: controller.changePage,
               showSelectedLabels: true,
@@ -61,13 +59,13 @@ class RootView extends GetView<RootController> {
                   backgroundColor: const Color(0xFF040A0F),
                   icon: Image.asset(
                     'assets/images/icons/home.png',
-                    width: 24,
-                    height: 24,
+                    width: 24.r,
+                    height: 24.r,
                   ),
                   activeIcon: Image.asset(
                     'assets/images/icons/home-dark-active.png',
-                    width: 24,
-                    height: 24,
+                    width: 24.r,
+                    height: 24.r,
                   ),
                   label: '首页',
                 ),
@@ -75,29 +73,29 @@ class RootView extends GetView<RootController> {
                   backgroundColor: const Color(0xFF040A0F),
                   icon: Image.asset(
                     'assets/images/icons/archive.png',
-                    width: 24,
-                    height: 24,
+                    width: 24.r,
+                    height: 24.r,
                   ),
                   activeIcon: Image.asset(
                     'assets/images/icons/archive-dark-active.png',
-                    width: 24,
-                    height: 24,
+                    width: 24.r,
+                    height: 24.r,
                   ),
                   label: '书签',
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: const Color(0xFF040A0F),
                   icon: Container(
-                    height: 36,
-                    width: 36,
+                    height: 36.r,
+                    width: 36.r,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1E88E5),
+                      color: const Color(0xFF3057FF),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.add,
                       color: Colors.white,
-                      size: 20,
+                      size: 20.sp,
                     ),
                   ),
                   label: '',
@@ -106,13 +104,13 @@ class RootView extends GetView<RootController> {
                   backgroundColor: const Color(0xFF040A0F),
                   icon: Image.asset(
                     'assets/images/icons/notification.png',
-                    width: 24,
-                    height: 24,
+                    width: 24.r,
+                    height: 24.r,
                   ),
                   activeIcon: Image.asset(
                     'assets/images/icons/notification-dark-active.png',
-                    width: 24,
-                    height: 24,
+                    width: 24.r,
+                    height: 24.r,
                   ),
                   label: '通知',
                 ),
@@ -120,13 +118,13 @@ class RootView extends GetView<RootController> {
                   backgroundColor: const Color(0xFF040A0F),
                   icon: Image.asset(
                     'assets/images/icons/user.png',
-                    width: 24,
-                    height: 24,
+                    width: 24.r,
+                    height: 24.r,
                   ),
                   activeIcon: Image.asset(
                     'assets/images/icons/user-dark-active.png',
-                    width: 24,
-                    height: 24,
+                    width: 24.r,
+                    height: 24.r,
                   ),
                   label: '我的',
                 ),
