@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
-
 import 'package:get/get.dart';
 import 'package:news/app/controllers/global_controller.dart';
 import 'package:news/components/category_component.dart';
 import 'package:news/components/custom_image.dart';
-import 'package:news/config.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
-
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -144,7 +142,7 @@ class HomeView extends GetView<HomeController> {
                             return GestureDetector(
                               onTap: () => controller.onCarouselTap(index),
                               child: TDImage(
-                                imgUrl: AppConfig.baseUrl + data.image!,
+                                imgUrl: dotenv.env['BASE_URL']! + data.image!,
                               ),
                             );
                           },
@@ -228,7 +226,8 @@ class HomeView extends GetView<HomeController> {
                           final data =
                               controller.recommendArticle.value.records?[index];
                           return GestureDetector(
-                            onTap: () => controller.onRecommendArticleTap(data.id!),
+                            onTap: () =>
+                                controller.onRecommendArticleTap(data.id!),
                             child: Container(
                               margin: EdgeInsets.only(right: 16.w),
                               width: 263.w,
@@ -269,7 +268,8 @@ class HomeView extends GetView<HomeController> {
                                       height: 3.r,
                                       decoration: BoxDecoration(
                                         color: const Color(0xFF8E9499),
-                                        borderRadius: BorderRadius.circular(1.r),
+                                        borderRadius:
+                                            BorderRadius.circular(1.r),
                                       ),
                                       margin:
                                           EdgeInsets.symmetric(horizontal: 6.w),
@@ -284,7 +284,8 @@ class HomeView extends GetView<HomeController> {
                                       height: 3.r,
                                       decoration: BoxDecoration(
                                         color: const Color(0xFF8E9499),
-                                        borderRadius: BorderRadius.circular(1.r),
+                                        borderRadius:
+                                            BorderRadius.circular(1.r),
                                       ),
                                       margin:
                                           EdgeInsets.symmetric(horizontal: 6.w),
@@ -408,7 +409,8 @@ class HomeView extends GetView<HomeController> {
                         final data = controller
                             .currentCategoryArticle.value.records?[index];
                         return GestureDetector(
-                          onTap: () => controller.onCategoryArticleTap(data!.id!),
+                          onTap: () =>
+                              controller.onCategoryArticleTap(data!.id!),
                           child: Container(
                             height: 126.h,
                             decoration: BoxDecoration(
@@ -440,7 +442,8 @@ class HomeView extends GetView<HomeController> {
                                     vertical: 6.h,
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news/config.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CustomImage extends StatelessWidget {
   final String? url;
@@ -19,7 +19,7 @@ class CustomImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageUrl = url != null && url!.isNotEmpty 
-      ? AppConfig.baseUrl + url! 
+      ? dotenv.env['BASE_URL']! + url! 
       : '';
 
     return CachedNetworkImage(

@@ -1,14 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
-import 'package:news/components/custom_image.dart';
-import 'package:news/config.dart';
-
 import '../controllers/detail_controller.dart';
 
 class DetailView extends GetView<DetailController> {
@@ -31,7 +27,7 @@ class DetailView extends GetView<DetailController> {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: NetworkImage(
-                                AppConfig.baseUrl +
+                                dotenv.env['BASE_URL']! +
                                     controller.articleDetail.value.image!,
                               ),
                               fit: BoxFit.cover,
@@ -169,12 +165,14 @@ class DetailView extends GetView<DetailController> {
                               },
                               extensions: [
                                 TagExtension(
-                                  tagsToExtend: {"img"},
-                                  builder: (extensionContext) {
-                                    final src = extensionContext.attributes['src'];
-                                    return CachedNetworkImage(imageUrl: AppConfig.detailUrl +  src!);
-                                  }
-                                ),
+                                    tagsToExtend: {"img"},
+                                    builder: (extensionContext) {
+                                      final src =
+                                          extensionContext.attributes['src'];
+                                      return CachedNetworkImage(
+                                          imageUrl:
+                                              dotenv.env['DETAIL_URL']! + src!);
+                                    }),
                               ],
                             )),
                         // 相关文章
@@ -214,7 +212,7 @@ class DetailView extends GetView<DetailController> {
                                                   BorderRadius.circular(8.r),
                                               image: DecorationImage(
                                                 image: NetworkImage(
-                                                  AppConfig.baseUrl +
+                                                  dotenv.env['BASE_URL']! +
                                                       controller.articleDetail
                                                           .value.image!,
                                                 ),
@@ -299,7 +297,8 @@ class DetailView extends GetView<DetailController> {
               ),
               child: Container(
                 height: 50.h, // 可以根据需要设置高度
-                width: detailController.scrollOffset.value > 180 ? 300.w : 248.w,
+                width:
+                    detailController.scrollOffset.value > 180 ? 300.w : 248.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25.r),
                   color: const Color(0xFF0D1B25),
