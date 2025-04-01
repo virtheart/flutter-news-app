@@ -5,6 +5,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:news/app/modules/detail/components/detail_comments.dart';
 import '../controllers/detail_controller.dart';
 
 class DetailView extends GetView<DetailController> {
@@ -349,7 +350,7 @@ class DetailView extends GetView<DetailController> {
                                 '128',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14.sp,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.normal,
                                 ),
                               ),
@@ -358,48 +359,66 @@ class DetailView extends GetView<DetailController> {
                           SizedBox(
                             width: 20.w,
                           ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svgs/message.svg',
-                                width: 20.w,
-                                height: 20.h,
+                          GestureDetector(
+                            onTap: () {
+                              Get.bottomSheet(const DetailComments());
+                            },
+                            child: SizedBox(
+                              width: 48.w,
+                              height: 20.h,
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/svgs/message.svg',
+                                    width: 20.w,
+                                    height: 20.h,
+                                  ),
+                                  SizedBox(
+                                    width: 6.w,
+                                  ),
+                                  Text(
+                                    '128',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                width: 6.w,
-                              ),
-                              Text(
-                                '128',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                           SizedBox(
                             width: 20.w,
                           ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svgs/archive-minus.svg',
-                                width: 20.w,
-                                height: 20.h,
+                          GestureDetector(
+                            onTap: () {
+                              Get.bottomSheet(const DetailComments());
+                            },
+                            child: SizedBox(
+                              width: 48.w,
+                              height: 20.h,
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/svgs/archive-minus.svg',
+                                    width: 20.w,
+                                    height: 20.h,
+                                  ),
+                                  SizedBox(
+                                    width: 6.w,
+                                  ),
+                                  Text(
+                                    '82',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                width: 6.w,
-                              ),
-                              Text(
-                                '82',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         ],
                       ),

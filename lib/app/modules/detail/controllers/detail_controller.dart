@@ -9,6 +9,9 @@ import 'package:news/app/data/models/user_info_model.dart';
 class DetailController extends GetxController {
   final ScrollController scrollController = ScrollController();
 
+  // 评论高度
+  final detailCommentHeight = 648.obs;
+
   // 页面滑动距离
   final scrollOffset = 0.0.obs;
 

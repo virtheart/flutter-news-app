@@ -5,7 +5,6 @@ import 'package:news/app/modules/bookmark/views/bookmark_view.dart';
 import 'package:news/app/modules/home/views/home_view.dart';
 import 'package:news/app/modules/notification/views/notification_view.dart';
 import 'package:news/app/modules/profile/views/profile_view.dart';
-import 'package:news/app/routes/app_pages.dart';
 
 import '../controllers/root_controller.dart';
 
